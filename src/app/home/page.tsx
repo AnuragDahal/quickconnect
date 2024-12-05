@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Gender } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,10 +21,7 @@ export default function Home({ onStartMatching }: HomeProps) {
   const [userGender, setUserGender] = useState<Gender>("male");
   const [preferredGender, setPreferredGender] = useState<Gender>("female");
 
-  
-
   const handleSubmit = (e: React.FormEvent) => {
-
     e.preventDefault();
     onStartMatching(userGender, preferredGender);
   };
