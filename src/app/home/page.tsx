@@ -1,7 +1,4 @@
-"use client";
-
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Gender } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,14 +11,20 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 
-export default function HomePage() {
+interface HomeProps {
+  onStartMatching: (userGender: Gender, preferredGender: Gender) => void;
+}
+
+export default function Home({ onStartMatching }: HomeProps) {
   const [userGender, setUserGender] = useState<Gender>("male");
   const [preferredGender, setPreferredGender] = useState<Gender>("female");
-  const router = useRouter();
+
+  
 
   const handleSubmit = (e: React.FormEvent) => {
+
     e.preventDefault();
-    router.push("/matching");
+    onStartMatching(userGender, preferredGender);
   };
 
   return (
