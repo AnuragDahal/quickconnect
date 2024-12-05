@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Video, Mic, MicOff, VideoOff, PhoneOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Peer from "peerjs";
-
-export default function CallPage() {
+const CallPage = () => {
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(false);
@@ -152,4 +151,6 @@ export default function CallPage() {
       </CardContent>
     </Card>
   );
-}
+};
+
+export default CallPage;

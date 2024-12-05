@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Gender } from "@/types/types";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-export default function MatchingPage() {
+const MatchingPage=()=> {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const router = useRouter();
 
@@ -45,3 +44,4 @@ export default function MatchingPage() {
     </Card>
   );
 }
+export default MatchingPage;

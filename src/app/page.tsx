@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-
-export default function HomePage() {
+const HomePage = () => {
   const [userGender, setUserGender] = useState<Gender>("male");
   const [preferredGender, setPreferredGender] = useState<Gender>("female");
   const router = useRouter();
@@ -72,4 +71,5 @@ export default function HomePage() {
       </CardContent>
     </Card>
   );
-}
+};
+export default HomePage;

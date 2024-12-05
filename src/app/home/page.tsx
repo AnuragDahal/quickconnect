@@ -17,7 +17,7 @@ interface HomeProps {
   onStartMatching: (userGender: Gender, preferredGender: Gender) => void;
 }
 
-export default function Home({ onStartMatching }: HomeProps) {
+const Home = ({ onStartMatching }: HomeProps) => {
   const [userGender, setUserGender] = useState<Gender>("male");
   const [preferredGender, setPreferredGender] = useState<Gender>("female");
 
@@ -74,4 +74,5 @@ export default function Home({ onStartMatching }: HomeProps) {
       </CardContent>
     </Card>
   );
-}
+};
+export default Home;
