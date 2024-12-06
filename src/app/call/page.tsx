@@ -18,9 +18,8 @@ const CallPage = () => {
 
   useEffect(() => {
     const newPeer = new Peer({
-      host: "localhost",
-      port: 3000,
-      path: "/peerjs",
+      host: `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}`,
+      path: `${process.env.NEXT_PUBLIC_PEER_PATH}`,
       secure: true,
     });
 
