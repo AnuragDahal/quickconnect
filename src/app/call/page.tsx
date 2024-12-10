@@ -15,12 +15,22 @@ const CallPage = () => {
   const [peerId, setPeerId] = useState<string | null>(null);
   const [peer, setPeer] = useState<Peer | null>(null);
   const [remotePeerId, setRemotePeerId] = useState<string>("");
+  const [ismanullayDisconnected, setIsManuallyDisconnected] = useState(false);
 
   useEffect(() => {
     const newPeer = new Peer({
-      host: `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}`,
-      path: `${process.env.NEXT_PUBLIC_PEER_PATH}`,
-      secure: true,
+      config: {
+        iceServers: [
+          {
+            urls: "stun:stun.l.google.com:19302",
+          },
+        ],
+      },
+      // host: `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}` || "localhost",
+      host: "localhost",
+      path: `${process.env.NEXT_PUBLIC_PEER_PATH}` || "/peerjs",
+      port: 5000,
+      secure: false,
     });
 
     newPeer.on("open", (id) => {
@@ -40,7 +50,17 @@ const CallPage = () => {
             if (remoteVideoRef.current) {
               remoteVideoRef.current.srcObject = remoteStream;
             }
+
+            call.on("close", () => {
+              if (!ismanullayDisconnected) {
+                alert("The other user has disconnected");
+                router.push("/");
+              }
+            });
           });
+          if (remoteVideoRef.current) {
+            remoteVideoRef.current.srcObject = null; // Clear remote video
+          }
         })
         .catch((error) => {
           console.error("Error accessing media devices:", error);
@@ -84,7 +104,11 @@ const CallPage = () => {
     stream.getVideoTracks().forEach((track) => (track.enabled = isCameraOff));
     setIsCameraOff(!isCameraOff);
   };
-
+  const endCall = () => {
+    setIsManuallyDisconnected(!ismanullayDisconnected);
+    peer?.disconnect();
+    router.push("/");
+  };
   return (
     <Card className="w-full max-w-4xl">
       <CardContent className="p-4">
@@ -126,11 +150,7 @@ const CallPage = () => {
               <Video className="h-4 w-4" />
             )}
           </Button>
-          <Button
-            variant="destructive"
-            size="icon"
-            onClick={() => router.push("/")}
-          >
+          <Button variant="destructive" size="icon" onClick={endCall}>
             <PhoneOff className="h-4 w-4" />
           </Button>
         </div>
