@@ -26,11 +26,10 @@ const CallPage = () => {
           },
         ],
       },
-      // host: `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}` || "localhost",
-      host: "localhost",
+      host: `${process.env.NEXT_PUBLIC_BACKEND_DOMAIN}` || "localhost",
+      // host: "localhost",
       path: `${process.env.NEXT_PUBLIC_PEER_PATH}` || "/peerjs",
-      port: 5000,
-      secure: false,
+      secure: true,
     });
 
     newPeer.on("open", (id) => {
