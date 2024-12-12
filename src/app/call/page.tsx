@@ -48,10 +48,10 @@ const CallPage = () => {
             credential: "cT2+u03jab6q/7aC",
           },
         ],
+        debug: 3, // Enable detailed logging
+        host: process.env.NEXT_PUBLIC_DOMAIN,
+        secure: true,
       },
-      debug: 3, // Enable detailed logging
-      host: process.env.NEXT_PUBLIC_BACKEND_DOMAIN,
-      secure: true,
     });
 
     // Enhanced error handling and logging
