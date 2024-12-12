@@ -50,8 +50,7 @@ const CallPage = () => {
         ],
       },
       debug: 3, // Enable detailed logging
-      host: process.env.NEXT_PUBLIC_BACKEND_DOMAIN || "localhost",
-      path: process.env.NEXT_PUBLIC_PEER_PATH || "/peerjs",
+      host: process.env.NEXT_PUBLIC_BACKEND_DOMAIN,
       secure: true,
     });
 
